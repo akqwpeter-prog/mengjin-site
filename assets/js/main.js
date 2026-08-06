@@ -4,35 +4,18 @@
   const $ = (selector, ctx = document) => ctx.querySelector(selector);
   const $$ = (selector, ctx = document) => Array.from(ctx.querySelectorAll(selector));
 
-  /* nav: N10 floating morph + scroll progress (rAF throttle, boolean guard) */
+  /* nav: floating morph via sentinel observer (no scroll listener) */
   const nav = $("#siteNav");
-  const progress = $(".scroll-progress");
-  const THRESHOLD = 80;
-  let floating = false;
-  let ticking = false;
-
-  const update = () => {
-    const y = window.scrollY;
-    const next = y > THRESHOLD;
-    if (next !== floating) {
-      floating = next;
-      nav.classList.toggle("is-floating", floating);
-    }
-    const max = document.documentElement.scrollHeight - window.innerHeight;
-    progress.style.transform = `scaleX(${max > 0 ? y / max : 0})`;
-    ticking = false;
-  };
-
-  window.addEventListener(
-    "scroll",
-    () => {
-      if (ticking) return;
-      ticking = true;
-      requestAnimationFrame(update);
-    },
-    { passive: true }
-  );
-  update();
+  const sentinel = $(".nav-sentinel");
+  if (nav && sentinel) {
+    const navObserver = new IntersectionObserver(
+      ([entry]) => {
+        nav.classList.toggle("is-floating", !entry.isIntersecting);
+      },
+      { threshold: 0 }
+    );
+    navObserver.observe(sentinel);
+  }
 
   /* mobile menu overlay */
   const navToggle = $("#navToggle");
@@ -132,20 +115,20 @@
     if (section) spyObserver.observe(section);
   });
 
-  /* star-burst · character moment on primary CTAs */
+  /* click splash · feedback moment on primary CTAs */
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   const burst = (x, y) => {
     if (reducedMotion) return;
-    const star = document.createElement("span");
-    star.className = "star-burst";
-    star.style.left = `${x - 12}px`;
-    star.style.top = `${y - 12}px`;
-    document.body.appendChild(star);
-    star.addEventListener("animationend", () => star.remove(), { once: true });
+    const splash = document.createElement("span");
+    splash.className = "click-splash";
+    splash.style.left = `${x - 13}px`;
+    splash.style.top = `${y - 13}px`;
+    document.body.appendChild(splash);
+    splash.addEventListener("animationend", () => splash.remove(), { once: true });
   };
 
-  $$(".btn--pear").forEach((btn) => {
+  $$(".btn--accent").forEach((btn) => {
     btn.addEventListener("click", (e) => burst(e.clientX, e.clientY));
   });
 

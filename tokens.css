@@ -1,45 +1,44 @@
-/* Hallmark · macrostructure: Bento Grid · theme: hum
- * enrichment: portrait card + character mark · anchor hue: 95 / 235 / 18
- * nav: N10 floating morph · footer: Ft4 compact row
- * Hallmark · pre-emit critique: P5 H5 E4 S5 R5 V5
+/* mengjin-site · design tokens
+ * direction: ink & jade · editorial premium / bento grid
+ * audit: single accent (jade), cool paper neutrals, light + dark themes
  */
 
 :root {
-  color-scheme: light;
+  color-scheme: light dark;
 
-  /* Palette — multi-accent on cream */
-  --color-paper: oklch(97% 0.012 95);
-  --color-paper-2: oklch(94% 0.016 95);
-  --color-paper-3: oklch(91% 0.020 95);
-  --color-rule: oklch(86% 0.014 90);
-  --color-rule-2: oklch(70% 0.018 85);
-  --color-muted: oklch(52% 0.014 90);
-  --color-neutral: oklch(38% 0.014 100);
-  --color-ink-2: oklch(28% 0.014 250);
-  --color-ink: oklch(20% 0.012 250);
-  --color-accent: oklch(86% 0.18 95);
-  --color-accent-deep: oklch(76% 0.20 95);
-  --color-accent-2: oklch(66% 0.18 235);
-  --color-accent-2-deep: oklch(56% 0.20 235);
-  --color-accent-3: oklch(68% 0.24 18);
-  --color-accent-3-deep: oklch(58% 0.26 18);
-  --color-mint: oklch(80% 0.16 150);
-  --color-lavender: oklch(74% 0.16 305);
-  --color-accent-ink: oklch(20% 0.012 250);
-  --color-focus: oklch(56% 0.18 235);
+  /* surfaces · cool paper, no warm cream */
+  --color-paper: oklch(98.6% 0.006 220);
+  --color-paper-2: oklch(96.7% 0.008 220);
+  --color-paper-3: oklch(94.4% 0.01 225);
+  --color-rule: oklch(90.5% 0.012 230);
+  --color-rule-2: oklch(78% 0.02 235);
 
-  /* Tint surfaces — colour-shift cards */
-  --tint-pear: oklch(86% 0.18 95 / 0.14);
-  --tint-pear-strong: oklch(86% 0.18 95 / 0.22);
-  --tint-cyan: oklch(66% 0.18 235 / 0.12);
-  --tint-cyan-strong: oklch(66% 0.18 235 / 0.20);
-  --tint-coral: oklch(68% 0.24 18 / 0.10);
-  --tint-mint: oklch(80% 0.16 150 / 0.14);
-  --tint-mint-strong: oklch(80% 0.16 150 / 0.22);
-  --tint-lavender: oklch(74% 0.16 305 / 0.12);
-  --tint-lavender-strong: oklch(74% 0.16 305 / 0.20);
+  /* ink scale · blue-black */
+  --color-muted: oklch(50% 0.02 240);
+  --color-neutral: oklch(38% 0.02 245);
+  --color-ink-2: oklch(29% 0.02 250);
+  --color-ink: oklch(22% 0.022 255);
 
-  /* Type — rounded sans only */
+  /* accent · jade (single accent, no yellow) */
+  --color-accent: oklch(53% 0.105 175);
+  --color-accent-deep: oklch(45% 0.105 175);
+  --color-accent-text: oklch(45% 0.105 175);
+  --color-accent-ink: oklch(99% 0.002 220);
+  --color-focus: oklch(52% 0.105 175);
+
+  /* tint surfaces */
+  --tint-accent: oklch(56% 0.105 175 / 0.09);
+  --tint-accent-strong: oklch(56% 0.105 175 / 0.16);
+  --tint-ink: oklch(22% 0.022 255 / 0.045);
+  --tint-ink-strong: oklch(22% 0.022 255 / 0.09);
+  --tint-rule: oklch(22% 0.022 255 / 0.1);
+
+  /* shadows tinted to the ink hue */
+  --shadow-card: 0 14px 34px -18px oklch(22% 0.02 255 / 0.18), 0 1px 2px oklch(22% 0.02 255 / 0.05);
+  --shadow-card-hover: 0 26px 60px -24px oklch(22% 0.02 255 / 0.24), 0 2px 6px oklch(22% 0.02 255 / 0.08);
+  --shadow-btn-cast: oklch(47% 0.105 175 / 0.4);
+
+  /* Type: rounded sans + mono labels */
   --font-display: "Plus Jakarta Sans", "PingFang SC", "Hiragino Sans GB", sans-serif;
   --font-body: "Plus Jakarta Sans", "PingFang SC", "Hiragino Sans GB", sans-serif;
   --font-label: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
@@ -61,12 +60,11 @@
   --section-gap: 6.5rem;
   --section-head-gap: 1.75rem;
 
+  /* shape system: buttons pill · cards 20px · inputs 12px */
   --radius-card: 20px;
   --radius-pill: 999px;
   --radius-input: 12px;
   --rule-card: 1px;
-  --shadow-card: 0 12px 32px -16px oklch(20% 0.012 250 / 0.14), 0 1px 2px oklch(20% 0.012 250 / 0.06);
-  --shadow-card-hover: 0 24px 56px -20px oklch(20% 0.012 250 / 0.18), 0 2px 6px oklch(20% 0.012 250 / 0.08);
 
   --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
   --ease-snap: cubic-bezier(0.22, 1, 0.36, 1);
@@ -98,4 +96,35 @@
   --page-max: 78rem;
   --page-gutter: clamp(1.25rem, 4vw, 3rem);
   --measure: 60ch;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-paper: oklch(17.5% 0.012 260);
+    --color-paper-2: oklch(20.5% 0.014 260);
+    --color-paper-3: oklch(24% 0.015 260);
+    --color-rule: oklch(31% 0.015 260);
+    --color-rule-2: oklch(46% 0.018 260);
+
+    --color-muted: oklch(72% 0.014 240);
+    --color-neutral: oklch(81% 0.01 235);
+    --color-ink-2: oklch(88% 0.008 235);
+    --color-ink: oklch(95% 0.005 220);
+
+    --color-accent: oklch(70% 0.1 175);
+    --color-accent-deep: oklch(61% 0.105 175);
+    --color-accent-text: oklch(76% 0.1 175);
+    --color-accent-ink: oklch(18% 0.015 260);
+    --color-focus: oklch(74% 0.1 175);
+
+    --tint-accent: oklch(70% 0.1 175 / 0.12);
+    --tint-accent-strong: oklch(70% 0.1 175 / 0.2);
+    --tint-ink: oklch(95% 0.005 220 / 0.05);
+    --tint-ink-strong: oklch(95% 0.005 220 / 0.1);
+    --tint-rule: oklch(95% 0.005 220 / 0.12);
+
+    --shadow-card: 0 16px 40px -20px oklch(0% 0 0 / 0.55), 0 1px 2px oklch(0% 0 0 / 0.3);
+    --shadow-card-hover: 0 28px 64px -24px oklch(0% 0 0 / 0.65), 0 2px 6px oklch(0% 0 0 / 0.35);
+    --shadow-btn-cast: oklch(0% 0 0 / 0.4);
+  }
 }

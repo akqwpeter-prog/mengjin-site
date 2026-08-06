@@ -1,8 +1,7 @@
-/* Hallmark · macrostructure: Bento Grid · theme: hum
- * enrichment: portrait card + character mark · anchor hue: 95 / 235 / 18
- * nav: N10 floating morph · footer: Ft4 compact row · contrast: pass (40-41)
- * slop: pass (42-45) · honest: pass (46) · chrome: pass (47) · tokens: pass (48)
- * responsive: pass (34, 49, 50-57) · Hallmark · pre-emit critique: P5 H5 E4 S5 R5 V5
+/* mengjin-site · ink & jade
+ * macrostructure: asymmetric bento · editorial rows · timeline rail
+ * interaction: floating morph nav, tactile push buttons, counter bounce,
+ *              reveal-on-view, click splash · light + dark themes
  */
 
 @import "../../tokens.css";
@@ -119,7 +118,7 @@ button {
   z-index: 300;
   padding: var(--space-sm) var(--space-md);
   border-radius: var(--radius-input);
-  background: var(--color-accent-2);
+  background: var(--color-accent);
   color: var(--color-accent-ink);
   font-weight: 600;
   transition: top var(--dur-short) var(--ease-out);
@@ -128,6 +127,17 @@ button {
   top: var(--space-md);
 }
 
+/* nav floating sentinel: 1px marker at the morph threshold */
+.nav-sentinel {
+  position: absolute;
+  top: 80px;
+  left: 0;
+  width: 1px;
+  height: 1px;
+  pointer-events: none;
+}
+
+/* scroll progress · CSS scroll-driven animation, no JS scroll listener */
 .scroll-progress {
   position: fixed;
   top: 0;
@@ -135,12 +145,28 @@ button {
   right: 0;
   height: 3px;
   z-index: 320;
-  background: var(--color-accent-deep);
-  transform: scaleX(0);
+  background: linear-gradient(90deg, var(--color-accent), var(--color-accent-deep));
   transform-origin: 0 50%;
+  animation: progress-grow linear;
+  animation-timeline: scroll(root);
 }
 
-/* ---------- nav · N10 floating morph ---------- */
+@keyframes progress-grow {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@supports not (animation-timeline: scroll()) {
+  .scroll-progress {
+    display: none;
+  }
+}
+
+/* ---------- nav · floating morph ---------- */
 
 .nav {
   position: fixed;
@@ -238,13 +264,18 @@ button {
   font-weight: 700;
   box-shadow:
     0 3px 0 0 var(--color-accent-deep),
-    0 6px 12px -3px oklch(76% 0.2 95 / 0.45);
+    0 6px 12px -3px var(--shadow-btn-cast);
   animation: orb-pulse 4s ease-in-out infinite;
 }
 
 @keyframes orb-pulse {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.05); }
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
 }
 
 .brand-text {
@@ -278,7 +309,7 @@ button {
   bottom: 0;
   height: 2px;
   border-radius: 2px;
-  background: var(--color-accent-2);
+  background: var(--color-accent);
   transform: scaleX(0);
   transform-origin: right;
   transition: transform var(--dur-short) var(--ease-out);
@@ -319,7 +350,9 @@ button {
   height: 2px;
   border-radius: 2px;
   background: var(--color-ink);
-  transition: transform var(--dur-short) var(--ease-out), opacity var(--dur-short) var(--ease-out);
+  transition:
+    transform var(--dur-short) var(--ease-out),
+    opacity var(--dur-short) var(--ease-out);
 }
 
 .nav-toggle.open span:nth-child(1) {
@@ -360,7 +393,9 @@ button {
   color: var(--color-ink);
   opacity: 0;
   transform: translateY(var(--space-lg));
-  transition: opacity var(--dur-long) var(--ease-out), transform var(--dur-long) var(--ease-out);
+  transition:
+    opacity var(--dur-long) var(--ease-out),
+    transform var(--dur-long) var(--ease-out);
 }
 
 .nav__overlay.open a:not(.btn) {
@@ -368,20 +403,32 @@ button {
   transform: none;
 }
 
-.nav__overlay.open a:not(.btn):nth-child(1) { transition-delay: 60ms; }
-.nav__overlay.open a:not(.btn):nth-child(2) { transition-delay: 120ms; }
-.nav__overlay.open a:not(.btn):nth-child(3) { transition-delay: 180ms; }
-.nav__overlay.open a:not(.btn):nth-child(4) { transition-delay: 240ms; }
-.nav__overlay.open a:not(.btn):nth-child(5) { transition-delay: 300ms; }
-.nav__overlay.open .btn { transition-delay: 360ms; }
+.nav__overlay.open a:not(.btn):nth-child(1) {
+  transition-delay: 60ms;
+}
+.nav__overlay.open a:not(.btn):nth-child(2) {
+  transition-delay: 120ms;
+}
+.nav__overlay.open a:not(.btn):nth-child(3) {
+  transition-delay: 180ms;
+}
+.nav__overlay.open a:not(.btn):nth-child(4) {
+  transition-delay: 240ms;
+}
+.nav__overlay.open a:not(.btn):nth-child(5) {
+  transition-delay: 300ms;
+}
+.nav__overlay.open .btn {
+  transition-delay: 360ms;
+}
 
-/* ---------- buttons · Hum push system ---------- */
+/* ---------- buttons · push system ---------- */
 
 .btn {
   --btn-face: var(--color-accent);
   --btn-ink: var(--color-accent-ink);
   --btn-edge: var(--color-accent-deep);
-  --btn-cast: oklch(76% 0.2 95 / 0.45);
+  --btn-cast: var(--shadow-btn-cast);
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -430,34 +477,23 @@ button {
   outline-offset: 3px;
 }
 
-.btn[disabled],
-.btn.is-disabled {
-  opacity: 0.55;
-  cursor: not-allowed;
-  pointer-events: none;
-  transform: none;
-  box-shadow:
-    0 4px 0 0 var(--btn-edge),
-    0 6px 12px -3px var(--btn-cast);
-}
-
 .btn--sm {
   padding: 0.55rem 1.1rem;
   font-size: var(--text-sm);
 }
 
-.btn--pear {
+.btn--accent {
   --btn-face: var(--color-accent);
   --btn-ink: var(--color-accent-ink);
   --btn-edge: var(--color-accent-deep);
-  --btn-cast: oklch(76% 0.2 95 / 0.45);
+  --btn-cast: var(--shadow-btn-cast);
 }
 
 .btn--outline {
   --btn-face: var(--color-paper);
   --btn-ink: var(--color-ink);
   --btn-edge: var(--color-rule-2);
-  --btn-cast: oklch(20% 0.012 250 / 0.1);
+  --btn-cast: var(--tint-ink);
   border: 1px solid var(--color-rule-2);
 }
 
@@ -474,24 +510,33 @@ button {
   transform: translateX(3px);
 }
 
-/* ---------- star burst · character moment ---------- */
+/* ---------- click splash · feedback moment ---------- */
 
-.star-burst {
+.click-splash {
   position: fixed;
-  width: 24px;
-  height: 24px;
+  width: 26px;
+  height: 26px;
   z-index: 400;
   pointer-events: none;
-  background:
-    linear-gradient(90deg, transparent 47%, var(--color-accent-3) 47% 53%, transparent 53%),
-    linear-gradient(0deg, transparent 47%, var(--color-accent-3) 47% 53%, transparent 53%);
-  animation: star-burst var(--dur-burst, 420ms) var(--ease-out) forwards;
+  border-radius: 50%;
+  background: var(--color-accent);
+  opacity: 0.55;
+  animation: click-splash var(--dur-burst, 520ms) var(--ease-out) forwards;
 }
 
-@keyframes star-burst {
-  0% { transform: scale(0) rotate(0deg); opacity: 1; }
-  60% { transform: scale(1.2) rotate(35deg); opacity: 0.9; }
-  100% { transform: scale(1.4) rotate(45deg); opacity: 0; }
+@keyframes click-splash {
+  0% {
+    transform: scale(0.2);
+    opacity: 0.55;
+  }
+  60% {
+    transform: scale(1.15);
+    opacity: 0.28;
+  }
+  100% {
+    transform: scale(1.5);
+    opacity: 0;
+  }
 }
 
 /* ---------- hero ---------- */
@@ -535,7 +580,7 @@ button {
 
 .hero__sub {
   margin-top: var(--space-md);
-  color: var(--color-neutral);
+  color: var(--color-muted);
   max-width: var(--measure);
 }
 
@@ -547,17 +592,25 @@ button {
   margin-top: var(--space-xl);
 }
 
+/* portrait · double-bezel: outer shell + inner core */
 .hero__portrait {
   position: relative;
-  width: min(360px, 100%);
+  width: min(380px, 100%);
   margin-inline-start: auto;
-  border-radius: var(--radius-card);
+  padding: 10px;
+  border-radius: calc(var(--radius-card) + 10px);
+  background: var(--color-paper-2);
+  border: 1px solid var(--color-rule);
   box-shadow: var(--shadow-card);
-  transition: transform var(--dur-long) var(--ease-out), box-shadow var(--dur-long) var(--ease-out);
+  transition:
+    transform var(--dur-long) var(--ease-out),
+    box-shadow var(--dur-long) var(--ease-out),
+    border-color var(--dur-long) var(--ease-out);
 }
 
 .hero__portrait:hover {
   transform: translateY(-4px);
+  border-color: var(--color-rule-2);
   box-shadow: var(--shadow-card-hover);
 }
 
@@ -574,8 +627,9 @@ button {
   margin-top: var(--space-sm);
   padding: var(--space-2xs) var(--space-sm);
   border-radius: var(--radius-pill);
-  border: 1px solid color-mix(in oklch, var(--color-accent-3) 45%, transparent);
-  color: var(--color-accent-3-deep);
+  border: 1px solid var(--tint-rule);
+  background: var(--tint-accent);
+  color: var(--color-accent-text);
   font-family: var(--font-label);
   font-size: var(--text-xs);
   font-weight: 500;
@@ -595,18 +649,20 @@ button {
 .cell {
   position: relative;
   border-radius: var(--radius-card);
-  border: var(--rule-card) solid color-mix(in oklch, var(--color-ink) 6%, transparent);
+  border: var(--rule-card) solid var(--tint-rule);
   background: var(--color-paper);
   box-shadow: var(--shadow-card);
   padding: var(--space-xl);
   transition:
     transform var(--dur-long) var(--ease-spring),
     box-shadow var(--dur-long) var(--ease-out),
-    background-color var(--dur-long) var(--ease-out);
+    background-color var(--dur-long) var(--ease-out),
+    border-color var(--dur-long) var(--ease-out);
 }
 
 .cell:hover {
   transform: translateY(-4px);
+  border-color: var(--color-rule-2);
   box-shadow: var(--shadow-card-hover);
 }
 
@@ -624,11 +680,15 @@ button {
 }
 
 .cell--about {
-  background: var(--tint-pear);
+  background:
+    radial-gradient(460px 240px at 92% 0%, var(--tint-accent), transparent 68%),
+    var(--color-paper-2);
 }
 
 .cell--about:hover {
-  background: var(--tint-pear-strong);
+  background:
+    radial-gradient(460px 240px at 92% 0%, var(--tint-accent-strong), transparent 68%),
+    var(--color-paper-2);
 }
 
 .cell--about h2 {
@@ -653,11 +713,19 @@ button {
   flex-direction: column;
   justify-content: center;
   gap: var(--space-xs);
-  background: var(--tint-cyan);
+  background: var(--tint-accent);
+}
+
+.cell--stat:nth-of-type(3) {
+  background: var(--tint-ink);
 }
 
 .cell--stat:hover {
-  background: var(--tint-cyan-strong);
+  background: var(--tint-accent-strong);
+}
+
+.cell--stat:nth-of-type(3):hover {
+  background: var(--tint-ink-strong);
 }
 
 .stat-num {
@@ -674,33 +742,35 @@ button {
 }
 
 @keyframes counter-yes {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.06); }
-  100% { transform: scale(1); }
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.06);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
 .cell--cap {
-  background: var(--tint-lavender);
-}
-
-.cell--cap:hover {
-  background: var(--tint-lavender-strong);
+  background: var(--color-paper-2);
 }
 
 .cell--cap:nth-of-type(5) {
-  background: var(--tint-mint);
-}
-
-.cell--cap:nth-of-type(5):hover {
-  background: var(--tint-mint-strong);
+  background: var(--tint-ink);
 }
 
 .cell--cap:nth-of-type(6) {
-  background: var(--tint-pear);
+  background: var(--color-paper-2);
 }
 
-.cell--cap:nth-of-type(6):hover {
-  background: var(--tint-pear-strong);
+.cell--cap:hover {
+  background: var(--tint-ink-strong);
+}
+
+.cell--cap:nth-of-type(5):hover {
+  background: var(--tint-ink-strong);
 }
 
 .cell--cap h3 {
@@ -721,7 +791,7 @@ button {
 .chip-row span {
   padding: var(--space-2xs) var(--space-sm);
   border-radius: var(--radius-pill);
-  border: 1px solid color-mix(in oklch, var(--color-ink) 10%, transparent);
+  border: 1px solid var(--tint-rule);
   background: color-mix(in oklch, var(--color-paper) 70%, transparent);
   font-size: var(--text-sm);
   color: var(--color-ink-2);
@@ -733,14 +803,14 @@ button {
   flex-direction: column;
   gap: var(--space-md);
   background:
-    radial-gradient(420px 220px at 90% 0%, var(--tint-cyan), transparent 70%),
+    radial-gradient(460px 240px at 90% 0%, var(--tint-accent), transparent 70%),
     var(--color-paper);
-  border-color: color-mix(in oklch, var(--color-accent-2) 35%, transparent);
+  border-color: color-mix(in oklch, var(--color-accent) 30%, transparent);
 }
 
 .cell--flag:hover {
   background:
-    radial-gradient(420px 220px at 90% 0%, var(--tint-cyan-strong), transparent 70%),
+    radial-gradient(460px 240px at 90% 0%, var(--tint-accent-strong), transparent 70%),
     var(--color-paper);
 }
 
@@ -752,7 +822,7 @@ button {
 
 .flag__arrow {
   font-size: var(--text-xl);
-  color: var(--color-accent-2-deep);
+  color: var(--color-accent-text);
 }
 
 .cell--flag h3 {
@@ -772,7 +842,7 @@ button {
 .flag__kpis span {
   padding: var(--space-2xs) var(--space-sm);
   border-radius: var(--radius-pill);
-  background: var(--color-accent-2);
+  background: var(--color-accent);
   color: var(--color-accent-ink);
   font-family: var(--font-label);
   font-size: var(--text-xs);
@@ -785,7 +855,7 @@ button {
   margin-top: auto;
   align-self: flex-start;
   font-weight: 600;
-  color: var(--color-accent-2-deep);
+  color: var(--color-accent-text);
   padding: var(--space-xs) 0;
   transition: color var(--dur-short) var(--ease-out);
 }
@@ -828,7 +898,7 @@ button {
   min-width: 0;
 }
 
-/* work list */
+/* work list · editorial rows with period rail */
 
 .work__list {
   border-block-start: 2px solid var(--color-ink);
@@ -836,9 +906,9 @@ button {
 
 .work__row {
   display: grid;
-  grid-template-columns: 4.5rem minmax(0, 1fr) auto;
+  grid-template-columns: 8.5rem minmax(0, 1fr);
   gap: var(--space-lg);
-  align-items: center;
+  align-items: start;
   padding: var(--space-lg) var(--space-sm);
   border-radius: var(--radius-card);
   transition: background-color var(--dur-short) var(--ease-out);
@@ -849,7 +919,9 @@ button {
 }
 
 .work__index {
-  color: var(--color-accent-2-deep);
+  padding-top: 0.2rem;
+  color: var(--color-accent-text);
+  line-height: 1.5;
 }
 
 .work__main h3 {
@@ -868,15 +940,16 @@ button {
 .work__kpis {
   display: flex;
   flex-wrap: wrap;
-  justify-content: flex-end;
   gap: var(--space-xs);
-  max-width: 22rem;
+  margin-top: var(--space-md);
+  grid-column: 2;
 }
 
 .work__kpis span {
   padding: var(--space-2xs) var(--space-sm);
   border-radius: var(--radius-pill);
-  background: var(--tint-cyan);
+  background: var(--tint-accent);
+  border: 1px solid var(--tint-rule);
   color: var(--color-ink-2);
   font-family: var(--font-label);
   font-size: var(--text-xs);
@@ -891,7 +964,7 @@ button {
   color: var(--color-neutral);
 }
 
-/* timeline */
+/* timeline · functional rail */
 
 .timeline {
   list-style: none;
@@ -899,12 +972,23 @@ button {
 }
 
 .tl__row {
+  position: relative;
   display: grid;
-  grid-template-columns: 7.5rem minmax(0, 1fr);
+  grid-template-columns: 8.5rem minmax(0, 1fr);
   gap: var(--space-xl);
-  padding: var(--space-lg) var(--space-sm);
+  padding: var(--space-lg) var(--space-sm) var(--space-lg) 0;
   border-radius: var(--radius-card);
   transition: background-color var(--dur-short) var(--ease-out);
+}
+
+.tl__row::before {
+  content: "";
+  position: absolute;
+  left: calc(8.5rem + var(--space-xl) / 2);
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: var(--color-rule);
 }
 
 .tl__row:hover {
@@ -913,7 +997,7 @@ button {
 
 .tl__year {
   line-height: 1.4;
-  color: var(--color-accent-2-deep);
+  color: var(--color-accent-text);
 }
 
 .tl__body h3 {
@@ -929,7 +1013,7 @@ button {
   font-size: var(--text-xs);
   font-weight: 500;
   letter-spacing: var(--tracking-label);
-  color: var(--color-accent-2-deep);
+  color: var(--color-accent-text);
 }
 
 .tl__body p {
@@ -967,8 +1051,10 @@ button {
   align-items: center;
   text-align: center;
   border-radius: var(--radius-card);
-  border: var(--rule-card) solid color-mix(in oklch, var(--color-ink) 6%, transparent);
-  background: var(--tint-pear);
+  border: 1px solid color-mix(in oklch, var(--color-accent) 30%, transparent);
+  background:
+    radial-gradient(560px 280px at 50% 0%, var(--tint-accent), transparent 72%),
+    var(--color-paper-2);
   padding: var(--space-3xl) var(--space-xl);
 }
 
@@ -1019,7 +1105,7 @@ button {
 }
 
 .footer__inner a:hover {
-  color: var(--color-accent-2-deep);
+  color: var(--color-accent-text);
 }
 
 /* ---------- responsive ---------- */
@@ -1049,15 +1135,6 @@ button {
     grid-row: auto;
   }
 
-  .work__row {
-    grid-template-columns: 3.5rem minmax(0, 1fr);
-  }
-
-  .work__kpis {
-    grid-column: 2;
-    justify-content: flex-start;
-  }
-
   .edu__row {
     grid-template-columns: minmax(0, 1fr);
   }
@@ -1083,13 +1160,15 @@ button {
     gap: var(--space-xs);
   }
 
+  .tl__row::before {
+    display: none;
+  }
+
   .work__row {
     grid-template-columns: minmax(0, 1fr);
     gap: var(--space-xs);
   }
 
-  .work__index,
-  .work__kpis,
   .work__co {
     grid-column: auto;
   }
@@ -1131,7 +1210,7 @@ button {
     box-shadow: var(--shadow-card);
   }
 
-  .star-burst {
+  .click-splash {
     display: none;
   }
 }

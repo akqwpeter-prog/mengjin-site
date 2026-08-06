@@ -12,6 +12,7 @@ Cobalt Ink 主题 v7（默认深色版）：墨蓝底色 + 电光钴蓝主色 + 
 
 ```bash
 cd mengjin-site
+cd public
 python3 -m http.server 8080
 ```
 
@@ -20,18 +21,20 @@ python3 -m http.server 8080
 ## 结构
 
 ```text
-index.html           页面结构
-assets/css/style.css 样式（Cobalt Ink 主题）
-tokens.css           设计令牌（OKLCH 色彩、字体、间距、动效、双主题）
-assets/js/main.js    滚动动效、数字滚动、导航交互
-assets/fonts/        自托管字体（Plus Jakarta Sans 可变字重 / JetBrains Mono）
-assets/img/          照片
-assets/img/ink-flow-*.webp 生成插画（钴蓝墨流）
+public/              可发布目录（部署时输出此目录）
+public/index.html    页面结构
+public/assets/css/style.css 样式（Cobalt Ink 主题）
+public/tokens.css    设计令牌（OKLCH 色彩、字体、间距、动效）
+public/assets/js/main.js 滚动动效、数字滚动、导航交互
+public/assets/fonts/ 自托管字体（Plus Jakarta Sans 可变字重 / JetBrains Mono）
+public/assets/img/   照片 + 生成插画（钴蓝墨流）
 ```
 
 ## 部署
 
-可直接把整个目录拖入 Cloudflare Pages / Netlify / EdgeOne Pages，
-或推送到 GitHub 仓库后接入平台自动构建。
+推送到 GitHub 仓库后接入 Cloudflare Pages：
 
-Cloudflare Pages 配置：框架预设 None，构建命令 `exit 0`，输出目录填 `.`。
+- 框架预设：None
+- 构建命令：`exit 0`
+- 构建输出目录：`public`
+- 生产分支：main

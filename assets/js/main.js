@@ -94,7 +94,7 @@
     },
     { rootMargin: "-38% 0px -55% 0px" }
   );
-  ["about", "capabilities", "projects", "timeline", "contact"].forEach((id) => {
+  ["product", "about", "capabilities", "projects", "timeline", "contact"].forEach((id) => {
     const section = document.getElementById(id);
     if (section) spyObserver.observe(section);
   });
@@ -115,20 +115,6 @@
         heroGlow.style.background = `radial-gradient(460px circle at ${x * 100}% ${y * 100}%, rgba(56,225,255,0.09), transparent 65%)`;
         raf = 0;
       });
-    });
-  }
-
-  /* terminal tilt */
-  const terminalWrap = $("#terminalWrap");
-  if (terminalWrap && finePointer) {
-    terminalWrap.addEventListener("mousemove", (e) => {
-      const rect = terminalWrap.getBoundingClientRect();
-      const rx = ((e.clientY - rect.top) / rect.height - 0.5) * -8;
-      const ry = ((e.clientX - rect.left) / rect.width - 0.5) * 10;
-      terminalWrap.style.transform = `perspective(1100px) rotateX(${rx}deg) rotateY(${ry}deg)`;
-    });
-    terminalWrap.addEventListener("mouseleave", () => {
-      terminalWrap.style.transform = "";
     });
   }
 

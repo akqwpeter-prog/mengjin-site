@@ -707,7 +707,7 @@ button {
   border-radius: calc(var(--radius-card) + 14px);
   overflow: hidden;
   pointer-events: none;
-  opacity: 0.6;
+  opacity: 0.85;
   transform: rotate(-4deg);
   transition:
     transform var(--dur-long) var(--ease-out),
@@ -718,12 +718,11 @@ button {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  mix-blend-mode: screen;
 }
 
 .hero__media:hover .hero__art {
   transform: rotate(-2deg) translate(6px, -4px) scale(1.03);
-  opacity: 0.75;
+  opacity: 0.95;
 }
 
 /* portrait · double-bezel: outer shell + inner core */
@@ -1025,8 +1024,7 @@ button {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  mix-blend-mode: screen;
-  opacity: 0.8;
+  opacity: 0.9;
   mask-image: linear-gradient(to left, black 58%, transparent 96%);
   -webkit-mask-image: linear-gradient(to left, black 58%, transparent 96%);
   transition: transform 1.2s var(--ease-out);
@@ -1332,7 +1330,7 @@ button {
   bottom: -8%;
   height: 78%;
   pointer-events: none;
-  opacity: 0.5;
+  opacity: 0.75;
 }
 
 .contact__art img {
@@ -1340,7 +1338,6 @@ button {
   height: 100%;
   object-fit: cover;
   object-position: center 70%;
-  mix-blend-mode: screen;
   mask-image: linear-gradient(to top, black 30%, transparent 88%);
   -webkit-mask-image: linear-gradient(to top, black 30%, transparent 88%);
 }

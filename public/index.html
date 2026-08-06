@@ -11,6 +11,7 @@
   <meta property="og:type" content="website">
   <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='16'%20fill='%231a5dff'/%3E%3Ctext%20x='32'%20y='44'%20font-size='32'%20text-anchor='middle'%20fill='%23f4f6f9'%20font-family='sans-serif'%20font-weight='bold'%3EM%3C/text%3E%3C/svg%3E">
   <link rel="preload" href="assets/fonts/pjs-variable.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/img/portrait.png" as="image" fetchpriority="high">
   <link rel="stylesheet" href="tokens.css">
   <link rel="stylesheet" href="assets/css/style.css">
 </head>
@@ -67,10 +68,10 @@
         </div>
         <div class="hero__media hero__reveal" style="--d:280ms">
           <div class="hero__art" aria-hidden="true">
-            <img src="assets/img/ink-flow-3.webp" alt="" loading="lazy">
+            <img src="assets/img/ink-flow-3.webp" alt="" width="600" height="840" loading="lazy" decoding="async" fetchpriority="low">
           </div>
           <figure class="hero__portrait">
-            <img src="assets/img/portrait.png" alt="曹孟锦的照片" class="portrait" fetchpriority="high">
+            <img src="assets/img/portrait.png" alt="曹孟锦的照片" class="portrait" width="380" height="481" fetchpriority="high" decoding="async">
             <span class="status-badge">OPEN TO WORK</span>
           </figure>
         </div>
@@ -123,7 +124,7 @@
       </article>
       <article class="cell cell--flag span-2x2 reveal">
         <div class="flag__art" aria-hidden="true">
-          <img src="assets/img/ink-flow-1.webp" alt="" loading="lazy">
+          <img src="assets/img/ink-flow-1.webp" alt="" width="760" height="760" loading="lazy" decoding="async" fetchpriority="low">
         </div>
         <div class="flag__head">
           <span class="mono-label">FLAGSHIP · 彩云小梦</span>
@@ -302,7 +303,7 @@
     <section class="section contact" id="contact">
       <div class="container contact__inner reveal">
         <div class="contact__art" aria-hidden="true">
-          <img src="assets/img/ink-flow-2.webp" alt="" loading="lazy">
+          <img src="assets/img/ink-flow-2.webp" alt="" width="1150" height="720" loading="lazy" decoding="async" fetchpriority="low">
         </div>
         <h2 class="contact__title">一起做下一个<br>10 亿字的产品</h2>
         <p class="contact__sub">AI 陪伴、Agent、内容或增长方向的合作与机会，欢迎聊聊。</p>

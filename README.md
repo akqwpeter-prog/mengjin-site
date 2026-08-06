@@ -2,7 +2,7 @@
 
 曹孟锦的个人网站 — AI 产品总监 / 15 年互联网产品 / 3 年 AIGC。
 
-纸面杂志风 v3：浅色暖纸底、墨黑 + 单一朱红强调色、衬线大标题、超大章节数字。
+Hum 主题 v4（Hallmark 设计系统）：奶油纸底 + 梨黄/天青/珊瑚多强调色、Plus Jakarta Sans 圆角无衬线、Bento Grid 骨架、弹簧交互、悬浮胶囊导航。
 
 纯静态站点（HTML + CSS + JS），无构建依赖，字体全部自托管，可部署到任何静态托管平台。
 
@@ -19,7 +19,8 @@ python3 -m http.server 8080
 
 ```text
 index.html           页面结构
-assets/css/style.css 样式（纸面杂志主题）
+assets/css/style.css 样式（Hum 主题）
+tokens.css 设计令牌（OKLCH 色彩、字体、间距、动效）
 assets/js/main.js    滚动动效、数字滚动、导航交互
 assets/fonts/        自托管字体（Unbounded / JetBrains Mono）
 assets/img/          照片

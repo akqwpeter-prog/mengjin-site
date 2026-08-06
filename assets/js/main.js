@@ -4,37 +4,66 @@
   const $ = (selector, ctx = document) => ctx.querySelector(selector);
   const $$ = (selector, ctx = document) => Array.from(ctx.querySelectorAll(selector));
 
-  /* header state + scroll progress */
-  const header = $("#siteHeader");
-  const progress = $("#scrollProgress");
+  /* nav: N10 floating morph + scroll progress (rAF throttle, boolean guard) */
+  const nav = $("#siteNav");
+  const progress = $(".scroll-progress");
+  const THRESHOLD = 80;
+  let floating = false;
+  let ticking = false;
 
-  const onScroll = () => {
+  const update = () => {
     const y = window.scrollY;
-    header.classList.toggle("scrolled", y > 24);
+    const next = y > THRESHOLD;
+    if (next !== floating) {
+      floating = next;
+      nav.classList.toggle("is-floating", floating);
+    }
     const max = document.documentElement.scrollHeight - window.innerHeight;
     progress.style.transform = `scaleX(${max > 0 ? y / max : 0})`;
+    ticking = false;
   };
-  window.addEventListener("scroll", onScroll, { passive: true });
-  onScroll();
 
-  /* mobile nav */
+  window.addEventListener(
+    "scroll",
+    () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(update);
+    },
+    { passive: true }
+  );
+  update();
+
+  /* mobile menu overlay */
   const navToggle = $("#navToggle");
-  const navLinks = $("#navLinks");
+  const navMenu = $("#navMenu");
+  const closeMenu = () => {
+    navMenu.classList.remove("open");
+    navMenu.hidden = true;
+    navToggle.classList.remove("open");
+    navToggle.setAttribute("aria-expanded", "false");
+    navToggle.setAttribute("aria-label", "打开菜单");
+  };
 
   navToggle.addEventListener("click", () => {
-    const open = navLinks.classList.toggle("open");
-    navToggle.classList.toggle("open", open);
-    navToggle.setAttribute("aria-expanded", String(open));
-    navToggle.setAttribute("aria-label", open ? "关闭菜单" : "打开菜单");
+    const open = navMenu.hidden;
+    if (open) {
+      navMenu.hidden = false;
+      requestAnimationFrame(() => navMenu.classList.add("open"));
+      navToggle.classList.add("open");
+      navToggle.setAttribute("aria-expanded", "true");
+      navToggle.setAttribute("aria-label", "关闭菜单");
+    } else {
+      closeMenu();
+    }
   });
 
-  $$("#navLinks a").forEach((link) => {
-    link.addEventListener("click", () => {
-      navLinks.classList.remove("open");
-      navToggle.classList.remove("open");
-      navToggle.setAttribute("aria-expanded", "false");
-      navToggle.setAttribute("aria-label", "打开菜单");
-    });
+  $$("#navMenu a").forEach((link) => {
+    link.addEventListener("click", closeMenu);
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && !navMenu.hidden) closeMenu();
   });
 
   /* scroll reveal */
@@ -63,7 +92,11 @@
       const p = Math.min(1, (now - start) / duration);
       const eased = 1 - Math.pow(1 - p, 3);
       el.textContent = format(Math.round(target * eased)) + suffix;
-      if (p < 1) requestAnimationFrame(tick);
+      if (p < 1) {
+        requestAnimationFrame(tick);
+      } else {
+        el.classList.add("is-done");
+      }
     };
     requestAnimationFrame(tick);
   };
@@ -99,24 +132,22 @@
     if (section) spyObserver.observe(section);
   });
 
-  /* hero cursor glow */
-  const hero = $(".hero");
-  const heroGlow = $("#heroGlow");
-  const finePointer = window.matchMedia("(pointer: fine)").matches;
+  /* star-burst · character moment on primary CTAs */
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  if (hero && heroGlow && finePointer) {
-    let raf = 0;
-    hero.addEventListener("mousemove", (e) => {
-      if (raf) return;
-      raf = requestAnimationFrame(() => {
-        const rect = hero.getBoundingClientRect();
-        const x = (e.clientX - rect.left) / rect.width;
-        const y = (e.clientY - rect.top) / rect.height;
-        heroGlow.style.background = `radial-gradient(460px circle at ${x * 100}% ${y * 100}%, rgba(56,225,255,0.09), transparent 65%)`;
-        raf = 0;
-      });
-    });
-  }
+  const burst = (x, y) => {
+    if (reducedMotion) return;
+    const star = document.createElement("span");
+    star.className = "star-burst";
+    star.style.left = `${x - 12}px`;
+    star.style.top = `${y - 12}px`;
+    document.body.appendChild(star);
+    star.addEventListener("animationend", () => star.remove(), { once: true });
+  };
+
+  $$(".btn--pear").forEach((btn) => {
+    btn.addEventListener("click", (e) => burst(e.clientX, e.clientY));
+  });
 
   /* footer year */
   const year = $("#year");

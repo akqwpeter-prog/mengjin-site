@@ -2,8 +2,8 @@
   {
     "date": "2026-08-06",
     "macrostructure": "Bento Grid",
-    "theme": "cobalt-ink",
+    "theme": "cobalt-ink-dark",
     "enrichment": "portrait-card + character-mark + double-bezel + generative art",
-    "brief": "曹孟锦个人网站 v6，电光钴蓝主色 + 珊瑚状态色，多技能审计，字符入场/3D 倾斜/聚光/磁吸/时间轴生长交互，浅色/暗色双主题"
+    "brief": "曹孟锦个人网站 v7，默认深色，可变字体排版升级，电光钴蓝主色 + 珊瑚状态色，字符入场/3D 倾斜/聚光/磁吸/时间轴生长交互"
   }
 ]

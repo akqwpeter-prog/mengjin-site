@@ -1,76 +1,76 @@
 /* mengjin-site · design tokens
- * direction: cobalt digital-ink · editorial premium / bento grid
- * audit: primary blue accent + coral signal color (no yellow, no green),
- *        cool paper neutrals, light + dark themes
+ * direction: cobalt ink · dark-first editorial / bento grid
+ * audit: single primary accent (cobalt blue) + coral signal color,
+ *        deep blue-black surfaces, forced dark theme
  */
 
 :root {
-  color-scheme: light dark;
+  color-scheme: dark;
 
-  /* surfaces · cool paper */
-  --color-paper: oklch(98.6% 0.006 220);
-  --color-paper-2: oklch(96.7% 0.008 220);
-  --color-paper-3: oklch(94.4% 0.01 225);
-  --color-rule: oklch(90.5% 0.012 230);
-  --color-rule-2: oklch(78% 0.02 235);
+  /* surfaces · deep blue-black ink */
+  --color-paper: oklch(16.5% 0.014 265);
+  --color-paper-2: oklch(19.5% 0.016 265);
+  --color-paper-3: oklch(23% 0.017 265);
+  --color-rule: oklch(30% 0.018 265);
+  --color-rule-2: oklch(46% 0.02 265);
 
-  /* ink scale · blue-black */
-  --color-muted: oklch(50% 0.02 240);
-  --color-neutral: oklch(38% 0.02 245);
-  --color-ink-2: oklch(29% 0.02 250);
-  --color-ink: oklch(22% 0.022 255);
+  /* ink scale · cool off-white */
+  --color-muted: oklch(72% 0.014 240);
+  --color-neutral: oklch(81% 0.01 235);
+  --color-ink-2: oklch(88% 0.008 235);
+  --color-ink: oklch(95% 0.005 220);
 
   /* accent · electric cobalt blue */
-  --color-accent: oklch(55% 0.19 255);
-  --color-accent-deep: oklch(46% 0.18 255);
-  --color-accent-text: oklch(43% 0.17 258);
-  --color-accent-ink: oklch(99% 0.002 220);
-  --color-focus: oklch(50% 0.19 255);
+  --color-accent: oklch(68% 0.15 255);
+  --color-accent-deep: oklch(60% 0.15 255);
+  --color-accent-text: oklch(76% 0.12 255);
+  --color-accent-ink: oklch(17% 0.015 265);
+  --color-focus: oklch(74% 0.13 255);
 
   /* signal · coral (status only, used sparingly) */
-  --color-flare: oklch(62% 0.19 25);
-  --color-flare-deep: oklch(50% 0.18 28);
-  --color-flare-text: oklch(50% 0.17 28);
+  --color-flare: oklch(74% 0.13 25);
+  --color-flare-deep: oklch(66% 0.14 25);
+  --color-flare-text: oklch(80% 0.11 28);
 
   /* tint surfaces */
-  --tint-accent: oklch(55% 0.19 255 / 0.09);
-  --tint-accent-strong: oklch(55% 0.19 255 / 0.16);
-  --tint-flare: oklch(62% 0.19 25 / 0.1);
-  --tint-ink: oklch(22% 0.022 255 / 0.045);
-  --tint-ink-strong: oklch(22% 0.022 255 / 0.09);
-  --tint-rule: oklch(22% 0.022 255 / 0.1);
+  --tint-accent: oklch(68% 0.15 255 / 0.13);
+  --tint-accent-strong: oklch(68% 0.15 255 / 0.22);
+  --tint-flare: oklch(74% 0.13 25 / 0.12);
+  --tint-ink: oklch(95% 0.005 220 / 0.05);
+  --tint-ink-strong: oklch(95% 0.005 220 / 0.1);
+  --tint-rule: oklch(95% 0.005 220 / 0.12);
 
-  /* shadows tinted to the ink hue */
-  --shadow-card: 0 14px 34px -18px oklch(30% 0.1 255 / 0.2), 0 1px 2px oklch(30% 0.1 255 / 0.06);
-  --shadow-card-hover: 0 26px 60px -24px oklch(30% 0.1 255 / 0.28), 0 2px 6px oklch(30% 0.1 255 / 0.1);
-  --shadow-btn-cast: oklch(46% 0.18 255 / 0.45);
+  /* shadows */
+  --shadow-card: 0 16px 40px -20px oklch(0% 0 0 / 0.6), 0 1px 2px oklch(0% 0 0 / 0.3);
+  --shadow-card-hover: 0 28px 64px -24px oklch(0% 0 0 / 0.7), 0 2px 6px oklch(0% 0 0 / 0.35);
+  --shadow-btn-cast: oklch(0% 0 0 / 0.45);
 
   /* aurora blobs · fixed backdrop */
-  --aurora-1: oklch(60% 0.17 240 / 0.4);
-  --aurora-2: oklch(70% 0.12 215 / 0.34);
-  --aurora-3: oklch(66% 0.2 265 / 0.28);
+  --aurora-1: oklch(58% 0.14 240 / 0.22);
+  --aurora-2: oklch(68% 0.1 215 / 0.18);
+  --aurora-3: oklch(64% 0.17 265 / 0.16);
 
-  /* Type: rounded sans + mono labels */
+  /* Type: variable rounded sans + mono labels */
   --font-display: "Plus Jakarta Sans", "PingFang SC", "Hiragino Sans GB", sans-serif;
   --font-body: "Plus Jakarta Sans", "PingFang SC", "Hiragino Sans GB", sans-serif;
   --font-label: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
 
-  --display-weight: 600;
-  --text-display: clamp(2.75rem, 5.5vw + 0.75rem, 5.25rem);
-  --text-display-s: clamp(2rem, 3.25vw + 1rem, 3.25rem);
-  --tracking-display: -0.025em;
-  --tracking-tight: -0.014em;
+  --display-weight: 300;
+  --text-display: clamp(2.9rem, 5.6vw + 0.8rem, 5.5rem);
+  --text-display-s: clamp(2.1rem, 3.4vw + 1rem, 3.4rem);
+  --tracking-display: -0.02em;
+  --tracking-tight: -0.01em;
   --tracking-normal: 0;
-  --tracking-label: 0.1em;
-  --tracking-micro: 0.16em;
+  --tracking-label: 0.14em;
+  --tracking-micro: 0.2em;
 
-  --lh-tight: 1.08;
-  --lh-snug: 1.22;
-  --lh-normal: 1.55;
-  --lh-relaxed: 1.7;
+  --lh-tight: 1.12;
+  --lh-snug: 1.24;
+  --lh-normal: 1.7;
+  --lh-relaxed: 1.85;
 
-  --section-gap: 6.5rem;
-  --section-head-gap: 1.75rem;
+  --section-gap: 7rem;
+  --section-head-gap: 2rem;
 
   /* shape system: buttons pill · cards 20px · inputs 12px */
   --radius-card: 20px;
@@ -94,9 +94,9 @@
   --space-lg: 1.5rem;
   --space-xl: 2.5rem;
   --space-2xl: 4rem;
-  --space-3xl: 6.5rem;
+  --space-3xl: 7rem;
 
-  --text-xs: 0.75rem;
+  --text-xs: 0.6875rem;
   --text-sm: 0.8125rem;
   --text-base: 1rem;
   --text-md: 1.0625rem;
@@ -108,44 +108,4 @@
   --page-max: 78rem;
   --page-gutter: clamp(1.25rem, 4vw, 3rem);
   --measure: 60ch;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --color-paper: oklch(16.5% 0.014 265);
-    --color-paper-2: oklch(19.5% 0.016 265);
-    --color-paper-3: oklch(23% 0.017 265);
-    --color-rule: oklch(30% 0.018 265);
-    --color-rule-2: oklch(46% 0.02 265);
-
-    --color-muted: oklch(72% 0.014 240);
-    --color-neutral: oklch(81% 0.01 235);
-    --color-ink-2: oklch(88% 0.008 235);
-    --color-ink: oklch(95% 0.005 220);
-
-    --color-accent: oklch(68% 0.15 255);
-    --color-accent-deep: oklch(60% 0.15 255);
-    --color-accent-text: oklch(76% 0.12 255);
-    --color-accent-ink: oklch(17% 0.015 265);
-    --color-focus: oklch(74% 0.13 255);
-
-    --color-flare: oklch(74% 0.13 25);
-    --color-flare-deep: oklch(66% 0.14 25);
-    --color-flare-text: oklch(80% 0.11 28);
-
-    --tint-accent: oklch(68% 0.15 255 / 0.13);
-    --tint-accent-strong: oklch(68% 0.15 255 / 0.22);
-    --tint-flare: oklch(74% 0.13 25 / 0.12);
-    --tint-ink: oklch(95% 0.005 220 / 0.05);
-    --tint-ink-strong: oklch(95% 0.005 220 / 0.1);
-    --tint-rule: oklch(95% 0.005 220 / 0.12);
-
-    --shadow-card: 0 16px 40px -20px oklch(0% 0 0 / 0.6), 0 1px 2px oklch(0% 0 0 / 0.3);
-    --shadow-card-hover: 0 28px 64px -24px oklch(0% 0 0 / 0.7), 0 2px 6px oklch(0% 0 0 / 0.35);
-    --shadow-btn-cast: oklch(0% 0 0 / 0.45);
-
-    --aurora-1: oklch(58% 0.14 240 / 0.22);
-    --aurora-2: oklch(68% 0.1 215 / 0.18);
-    --aurora-3: oklch(64% 0.17 265 / 0.16);
-  }
 }

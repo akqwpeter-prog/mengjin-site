@@ -1,12 +1,13 @@
 /* mengjin-site · design tokens
- * direction: ink & jade · editorial premium / bento grid
- * audit: single accent (jade), cool paper neutrals, light + dark themes
+ * direction: cobalt digital-ink · editorial premium / bento grid
+ * audit: primary blue accent + coral signal color (no yellow, no green),
+ *        cool paper neutrals, light + dark themes
  */
 
 :root {
   color-scheme: light dark;
 
-  /* surfaces · cool paper, no warm cream */
+  /* surfaces · cool paper */
   --color-paper: oklch(98.6% 0.006 220);
   --color-paper-2: oklch(96.7% 0.008 220);
   --color-paper-3: oklch(94.4% 0.01 225);
@@ -19,24 +20,35 @@
   --color-ink-2: oklch(29% 0.02 250);
   --color-ink: oklch(22% 0.022 255);
 
-  /* accent · jade (single accent, no yellow) */
-  --color-accent: oklch(53% 0.105 175);
-  --color-accent-deep: oklch(45% 0.105 175);
-  --color-accent-text: oklch(45% 0.105 175);
+  /* accent · electric cobalt blue */
+  --color-accent: oklch(55% 0.19 255);
+  --color-accent-deep: oklch(46% 0.18 255);
+  --color-accent-text: oklch(43% 0.17 258);
   --color-accent-ink: oklch(99% 0.002 220);
-  --color-focus: oklch(52% 0.105 175);
+  --color-focus: oklch(50% 0.19 255);
+
+  /* signal · coral (status only, used sparingly) */
+  --color-flare: oklch(62% 0.19 25);
+  --color-flare-deep: oklch(50% 0.18 28);
+  --color-flare-text: oklch(50% 0.17 28);
 
   /* tint surfaces */
-  --tint-accent: oklch(56% 0.105 175 / 0.09);
-  --tint-accent-strong: oklch(56% 0.105 175 / 0.16);
+  --tint-accent: oklch(55% 0.19 255 / 0.09);
+  --tint-accent-strong: oklch(55% 0.19 255 / 0.16);
+  --tint-flare: oklch(62% 0.19 25 / 0.1);
   --tint-ink: oklch(22% 0.022 255 / 0.045);
   --tint-ink-strong: oklch(22% 0.022 255 / 0.09);
   --tint-rule: oklch(22% 0.022 255 / 0.1);
 
   /* shadows tinted to the ink hue */
-  --shadow-card: 0 14px 34px -18px oklch(22% 0.02 255 / 0.18), 0 1px 2px oklch(22% 0.02 255 / 0.05);
-  --shadow-card-hover: 0 26px 60px -24px oklch(22% 0.02 255 / 0.24), 0 2px 6px oklch(22% 0.02 255 / 0.08);
-  --shadow-btn-cast: oklch(47% 0.105 175 / 0.4);
+  --shadow-card: 0 14px 34px -18px oklch(30% 0.1 255 / 0.2), 0 1px 2px oklch(30% 0.1 255 / 0.06);
+  --shadow-card-hover: 0 26px 60px -24px oklch(30% 0.1 255 / 0.28), 0 2px 6px oklch(30% 0.1 255 / 0.1);
+  --shadow-btn-cast: oklch(46% 0.18 255 / 0.45);
+
+  /* aurora blobs · fixed backdrop */
+  --aurora-1: oklch(60% 0.17 240 / 0.4);
+  --aurora-2: oklch(70% 0.12 215 / 0.34);
+  --aurora-3: oklch(66% 0.2 265 / 0.28);
 
   /* Type: rounded sans + mono labels */
   --font-display: "Plus Jakarta Sans", "PingFang SC", "Hiragino Sans GB", sans-serif;
@@ -100,31 +112,40 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --color-paper: oklch(17.5% 0.012 260);
-    --color-paper-2: oklch(20.5% 0.014 260);
-    --color-paper-3: oklch(24% 0.015 260);
-    --color-rule: oklch(31% 0.015 260);
-    --color-rule-2: oklch(46% 0.018 260);
+    --color-paper: oklch(16.5% 0.014 265);
+    --color-paper-2: oklch(19.5% 0.016 265);
+    --color-paper-3: oklch(23% 0.017 265);
+    --color-rule: oklch(30% 0.018 265);
+    --color-rule-2: oklch(46% 0.02 265);
 
     --color-muted: oklch(72% 0.014 240);
     --color-neutral: oklch(81% 0.01 235);
     --color-ink-2: oklch(88% 0.008 235);
     --color-ink: oklch(95% 0.005 220);
 
-    --color-accent: oklch(70% 0.1 175);
-    --color-accent-deep: oklch(61% 0.105 175);
-    --color-accent-text: oklch(76% 0.1 175);
-    --color-accent-ink: oklch(18% 0.015 260);
-    --color-focus: oklch(74% 0.1 175);
+    --color-accent: oklch(68% 0.15 255);
+    --color-accent-deep: oklch(60% 0.15 255);
+    --color-accent-text: oklch(76% 0.12 255);
+    --color-accent-ink: oklch(17% 0.015 265);
+    --color-focus: oklch(74% 0.13 255);
 
-    --tint-accent: oklch(70% 0.1 175 / 0.12);
-    --tint-accent-strong: oklch(70% 0.1 175 / 0.2);
+    --color-flare: oklch(74% 0.13 25);
+    --color-flare-deep: oklch(66% 0.14 25);
+    --color-flare-text: oklch(80% 0.11 28);
+
+    --tint-accent: oklch(68% 0.15 255 / 0.13);
+    --tint-accent-strong: oklch(68% 0.15 255 / 0.22);
+    --tint-flare: oklch(74% 0.13 25 / 0.12);
     --tint-ink: oklch(95% 0.005 220 / 0.05);
     --tint-ink-strong: oklch(95% 0.005 220 / 0.1);
     --tint-rule: oklch(95% 0.005 220 / 0.12);
 
-    --shadow-card: 0 16px 40px -20px oklch(0% 0 0 / 0.55), 0 1px 2px oklch(0% 0 0 / 0.3);
-    --shadow-card-hover: 0 28px 64px -24px oklch(0% 0 0 / 0.65), 0 2px 6px oklch(0% 0 0 / 0.35);
-    --shadow-btn-cast: oklch(0% 0 0 / 0.4);
+    --shadow-card: 0 16px 40px -20px oklch(0% 0 0 / 0.6), 0 1px 2px oklch(0% 0 0 / 0.3);
+    --shadow-card-hover: 0 28px 64px -24px oklch(0% 0 0 / 0.7), 0 2px 6px oklch(0% 0 0 / 0.35);
+    --shadow-btn-cast: oklch(0% 0 0 / 0.45);
+
+    --aurora-1: oklch(58% 0.14 240 / 0.22);
+    --aurora-2: oklch(68% 0.1 215 / 0.18);
+    --aurora-3: oklch(64% 0.17 265 / 0.16);
   }
 }

@@ -17,6 +17,83 @@
     navObserver.observe(sentinel);
   }
 
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const finePointer = window.matchMedia("(pointer: fine)").matches;
+
+  /* hero title · character entrance */
+  const heroName = $(".hero__name");
+  if (heroName && !reducedMotion) {
+    const text = heroName.textContent.trim();
+    heroName.setAttribute("aria-label", text);
+    heroName.textContent = "";
+    [...text].forEach((ch, i) => {
+      const span = document.createElement("span");
+      span.className = "char";
+      span.style.setProperty("--i", i);
+      span.textContent = ch === " " ? "\u00A0" : ch;
+      heroName.appendChild(span);
+    });
+  }
+
+  /* bento · cursor spotlight */
+  if (finePointer && !reducedMotion) {
+    $$(".cell").forEach((cell) => {
+      let raf = null;
+      cell.addEventListener("pointermove", (e) => {
+        if (raf) return;
+        raf = requestAnimationFrame(() => {
+          const r = cell.getBoundingClientRect();
+          cell.style.setProperty("--mx", `${e.clientX - r.left}px`);
+          cell.style.setProperty("--my", `${e.clientY - r.top}px`);
+          raf = null;
+        });
+      });
+      cell.addEventListener("pointerleave", () => {
+        cell.style.removeProperty("--mx");
+        cell.style.removeProperty("--my");
+      });
+    });
+  }
+
+  /* portrait · 3D tilt on fine pointers */
+  const portrait = $(".hero__portrait");
+  if (portrait && finePointer && !reducedMotion) {
+    let raf = null;
+    portrait.addEventListener("pointermove", (e) => {
+      if (raf) return;
+      raf = requestAnimationFrame(() => {
+        const r = portrait.getBoundingClientRect();
+        const rx = ((e.clientY - r.top) / r.height - 0.5) * -8;
+        const ry = ((e.clientX - r.left) / r.width - 0.5) * 8;
+        portrait.style.transform = `perspective(900px) rotateX(${rx.toFixed(2)}deg) rotateY(${ry.toFixed(2)}deg) translateY(-4px)`;
+        raf = null;
+      });
+    });
+    portrait.addEventListener("pointerleave", () => {
+      portrait.style.transform = "";
+    });
+  }
+
+  /* primary CTAs · magnetic pull */
+  if (finePointer && !reducedMotion) {
+    $$(".btn--magnetic").forEach((btn) => {
+      let raf = null;
+      btn.addEventListener("pointermove", (e) => {
+        if (raf) return;
+        raf = requestAnimationFrame(() => {
+          const r = btn.getBoundingClientRect();
+          const dx = (e.clientX - (r.left + r.width / 2)) * 0.16;
+          const dy = (e.clientY - (r.top + r.height / 2)) * 0.22;
+          btn.style.transform = `translate(${dx.toFixed(1)}px, ${dy.toFixed(1)}px)`;
+          raf = null;
+        });
+      });
+      btn.addEventListener("pointerleave", () => {
+        btn.style.transform = "";
+      });
+    });
+  }
+
   /* mobile menu overlay */
   const navToggle = $("#navToggle");
   const navMenu = $("#navMenu");
@@ -116,8 +193,6 @@
   });
 
   /* click splash · feedback moment on primary CTAs */
-  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
   const burst = (x, y) => {
     if (reducedMotion) return;
     const splash = document.createElement("span");

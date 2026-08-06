@@ -2,7 +2,9 @@
 
 曹孟锦的个人网站 — AI 产品总监 / 15 年互联网产品 / 3 年 AIGC。
 
-Ink & Jade 主题 v5（taste-skill / high-end-visual-design 审计）：冷调纸感底色 + 单一玉青强调色、Plus Jakarta Sans 圆角无衬线、Bento Grid 骨架、弹簧按压交互、悬浮胶囊导航，支持浅色 / 暗色双主题。
+Cobalt Ink 主题 v6（taste-skill / high-end-visual-design / frontend-design 审计）：冷调纸感底色 + 电光钴蓝主色 + 珊瑚状态色、Plus Jakarta Sans 圆角无衬线、Bento Grid 骨架、字符级首屏入场、3D 肖像倾斜、聚光卡片、磁吸按钮、时间轴滚动生长、技能跑马灯，支持浅色 / 暗色双主题。
+
+页面插画由 algorithmic-art 技能生成（「钴蓝墨流」流场粒子算法，种子可复现），见 `assets/img/art-readme.md`。
 
 纯静态站点（HTML + CSS + JS），无构建依赖，字体全部自托管，可部署到任何静态托管平台。
 
@@ -19,11 +21,12 @@ python3 -m http.server 8080
 
 ```text
 index.html           页面结构
-assets/css/style.css 样式（Ink & Jade 主题）
+assets/css/style.css 样式（Cobalt Ink 主题）
 tokens.css           设计令牌（OKLCH 色彩、字体、间距、动效、双主题）
 assets/js/main.js    滚动动效、数字滚动、导航交互
 assets/fonts/        自托管字体（Plus Jakarta Sans / JetBrains Mono）
 assets/img/          照片
+assets/img/ink-flow-*.webp 生成插画（钴蓝墨流）
 ```
 
 ## 部署

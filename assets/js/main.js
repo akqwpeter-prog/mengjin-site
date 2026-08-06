@@ -94,7 +94,7 @@
     },
     { rootMargin: "-38% 0px -55% 0px" }
   );
-  ["product", "about", "capabilities", "projects", "timeline", "contact"].forEach((id) => {
+  ["about", "capabilities", "projects", "timeline", "contact"].forEach((id) => {
     const section = document.getElementById(id);
     if (section) spyObserver.observe(section);
   });

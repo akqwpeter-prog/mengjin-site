@@ -12,7 +12,6 @@
   const applyTheme = (t) => {
     rootEl.dataset.theme = t;
     if (themeToggle) {
-      themeToggle.textContent = t === "dark" ? "浅色" : "深色";
       themeToggle.setAttribute(
         "aria-label",
         t === "dark" ? "切换到浅色模式" : "切换到深色模式"

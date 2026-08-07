@@ -27,7 +27,7 @@ public/assets/css/style.css 样式（Cobalt Ink 主题）
 public/tokens.css    设计令牌（OKLCH 色彩、字体、间距、动效）
 public/assets/js/main.js 滚动动效、数字滚动、导航交互
 public/assets/fonts/ 自托管字体（Plus Jakarta Sans 可变字重 / JetBrains Mono）
-public/assets/img/   日漫头像 + 透明底生成插画（钴蓝墨流，双主题自适应）
+public/assets/img/   日漫头像 + 透明底生成插画 + iconfont 图标（双主题自适应）
 ```
 
 ## 部署

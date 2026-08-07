@@ -571,6 +571,63 @@ button {
   transform: translateX(3px);
 }
 
+/* ---------- icons · iconfont svg masks (follow currentColor) ---------- */
+
+.ic {
+  display: inline-block;
+  width: 1.05em;
+  height: 1.05em;
+  flex-shrink: 0;
+  vertical-align: -0.15em;
+  background-color: currentColor;
+  -webkit-mask: no-repeat center / contain;
+  mask: no-repeat center / contain;
+}
+
+.ic-mail {
+  -webkit-mask-image: url("../img/icons/mail.svg");
+  mask-image: url("../img/icons/mail.svg");
+}
+
+.ic-github {
+  -webkit-mask-image: url("../img/icons/github.svg");
+  mask-image: url("../img/icons/github.svg");
+}
+
+.ic-xhs {
+  -webkit-mask-image: url("../img/icons/xiaohongshu.svg");
+  mask-image: url("../img/icons/xiaohongshu.svg");
+}
+
+.ic-sun {
+  -webkit-mask-image: url("../img/icons/sun.svg");
+  mask-image: url("../img/icons/sun.svg");
+}
+
+.ic-moon {
+  -webkit-mask-image: url("../img/icons/moon.svg");
+  mask-image: url("../img/icons/moon.svg");
+}
+
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4em;
+}
+
+.theme-toggle .ic-moon {
+  display: none;
+}
+
+:root[data-theme="light"] .theme-toggle .ic-sun {
+  display: none;
+}
+
+:root[data-theme="light"] .theme-toggle .ic-moon {
+  display: inline-block;
+}
+
 /* ---------- click splash · feedback moment ---------- */
 
 .click-splash {

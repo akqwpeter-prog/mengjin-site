@@ -2,7 +2,7 @@
 
 曹孟锦的个人网站 — AI 产品总监 / 15 年互联网产品 / 3 年 AIGC。
 
-Cobalt Ink 主题 v7（默认深色版）：墨蓝底色 + 电光钴蓝主色 + 珊瑚状态色、Plus Jakarta Sans 可变字体（200-800 字重）排版升级、Bento Grid 骨架、字符级首屏入场、3D 肖像倾斜、聚光卡片、磁吸按钮、时间轴滚动生长、技能跑马灯。
+Cobalt Ink 主题：墨蓝/冷纸双主题一键切换（默认深色，选择本地记忆）、电光钴蓝主色 + 珊瑚状态色、Plus Jakarta Sans 可变字体（200-800 字重）排版升级、Bento Grid 骨架、字符级首屏入场、3D 肖像倾斜、聚光卡片、磁吸按钮、时间轴滚动生长、技能跑马灯。
 
 页面插画由 algorithmic-art 技能生成（「钴蓝墨流」流场粒子算法，种子可复现），见 `assets/img/art-readme.md`。
 
@@ -27,7 +27,7 @@ public/assets/css/style.css 样式（Cobalt Ink 主题）
 public/tokens.css    设计令牌（OKLCH 色彩、字体、间距、动效）
 public/assets/js/main.js 滚动动效、数字滚动、导航交互
 public/assets/fonts/ 自托管字体（Plus Jakarta Sans 可变字重 / JetBrains Mono）
-public/assets/img/   卡通头像 + 生成插画（钴蓝墨流）
+public/assets/img/   日漫头像 + 透明底生成插画（钴蓝墨流，双主题自适应）
 ```
 
 ## 部署

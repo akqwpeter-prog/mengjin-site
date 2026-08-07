@@ -4,6 +4,38 @@
   const $ = (selector, ctx = document) => ctx.querySelector(selector);
   const $$ = (selector, ctx = document) => Array.from(ctx.querySelectorAll(selector));
 
+  /* theme toggle · dark / light */
+  const rootEl = document.documentElement;
+  const themeToggle = $("#themeToggle");
+  const metaTheme = document.querySelector('meta[name="theme-color"]');
+
+  const applyTheme = (t) => {
+    rootEl.dataset.theme = t;
+    if (themeToggle) {
+      themeToggle.textContent = t === "dark" ? "浅色" : "深色";
+      themeToggle.setAttribute(
+        "aria-label",
+        t === "dark" ? "切换到浅色模式" : "切换到深色模式"
+      );
+    }
+    if (metaTheme) {
+      metaTheme.setAttribute("content", t === "dark" ? "#0b0f1a" : "#f4f6f9");
+    }
+  };
+
+  if (themeToggle) {
+    themeToggle.addEventListener("click", () => {
+      const next = rootEl.dataset.theme === "dark" ? "light" : "dark";
+      try {
+        localStorage.setItem("mengjin-theme", next);
+      } catch (e) {
+        /* private mode: ignore */
+      }
+      applyTheme(next);
+    });
+  }
+  applyTheme(rootEl.dataset.theme || "dark");
+
   /* nav: floating morph via sentinel observer (no scroll listener) */
   const nav = $("#siteNav");
   const sentinel = $(".nav-sentinel");

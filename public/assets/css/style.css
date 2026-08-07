@@ -54,6 +54,7 @@ body {
   text-rendering: optimizeLegibility;
   font-variant-numeric: tabular-nums;
   letter-spacing: 0.012em;
+  transition: background-color var(--dur-long) var(--ease-out), color var(--dur-long) var(--ease-out);
 }
 
 /* ---------- atmosphere · aurora + grain ---------- */
@@ -718,6 +719,7 @@ button {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  mix-blend-mode: screen;
 }
 
 .hero__media:hover .hero__art {
@@ -1024,6 +1026,7 @@ button {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  mix-blend-mode: screen;
   opacity: 0.9;
   mask-image: linear-gradient(to left, black 58%, transparent 96%);
   -webkit-mask-image: linear-gradient(to left, black 58%, transparent 96%);
@@ -1338,8 +1341,28 @@ button {
   height: 100%;
   object-fit: cover;
   object-position: center 70%;
+  mix-blend-mode: screen;
   mask-image: linear-gradient(to top, black 30%, transparent 88%);
   -webkit-mask-image: linear-gradient(to top, black 30%, transparent 88%);
+}
+
+/* light theme · ink art multiplies onto cool paper */
+:root[data-theme="light"] .hero__art img,
+:root[data-theme="light"] .flag__art img,
+:root[data-theme="light"] .contact__art img {
+  mix-blend-mode: multiply;
+}
+
+:root[data-theme="light"] .hero__art {
+  opacity: 0.7;
+}
+
+:root[data-theme="light"] .flag__art img {
+  opacity: 0.8;
+}
+
+:root[data-theme="light"] .contact__art {
+  opacity: 0.6;
 }
 
 .contact__title {

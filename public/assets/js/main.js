@@ -134,6 +134,7 @@
     navToggle.classList.remove("open");
     navToggle.setAttribute("aria-expanded", "false");
     navToggle.setAttribute("aria-label", "打开菜单");
+    document.documentElement.classList.remove("menu-open");
   };
 
   navToggle.addEventListener("click", () => {
@@ -144,6 +145,7 @@
       navToggle.classList.add("open");
       navToggle.setAttribute("aria-expanded", "true");
       navToggle.setAttribute("aria-label", "关闭菜单");
+      document.documentElement.classList.add("menu-open");
     } else {
       closeMenu();
     }

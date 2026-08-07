@@ -12,4 +12,7 @@
 
 深色版已将透明底合成到页面纸色上，体积从 ~1MB 压至 44-74KB。
 
+avatar.webp 由 Seedream 5.0-lite 以真人照片为参考生成（保留特征的三维卡通职业头像），
+原始真人照片已移出公开仓库，仅保留在本地。
+
 生成脚本（临时）：`/tmp/inkgen/index.html` + `/tmp/inkgen/export_inks.py`。

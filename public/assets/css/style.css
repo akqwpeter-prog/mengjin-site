@@ -1162,6 +1162,10 @@ html.menu-open {
   text-wrap: balance;
 }
 
+#capabilities {
+  scroll-margin-top: 110px;
+}
+
 /* work list · editorial rows with period rail */
 
 .work__list {
@@ -1175,11 +1179,14 @@ html.menu-open {
   align-items: start;
   padding: var(--space-lg) var(--space-sm);
   border-radius: var(--radius-card);
-  transition: background-color var(--dur-short) var(--ease-out);
+  transition:
+    background-color var(--dur-short) var(--ease-out),
+    transform var(--dur-short) var(--ease-out);
 }
 
 .work__row:hover {
   background: var(--color-paper-2);
+  transform: translateX(6px);
 }
 
 .work__index {
@@ -1283,11 +1290,14 @@ html.menu-open {
   gap: var(--space-xl);
   padding: var(--space-lg) var(--space-sm) var(--space-lg) 0;
   border-radius: var(--radius-card);
-  transition: background-color var(--dur-short) var(--ease-out);
+  transition:
+    background-color var(--dur-short) var(--ease-out),
+    transform var(--dur-short) var(--ease-out);
 }
 
 .tl__row:hover {
   background: var(--color-paper-2);
+  transform: translateX(6px);
 }
 
 .tl__year {

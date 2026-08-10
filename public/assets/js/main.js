@@ -128,13 +128,14 @@
   /* mobile menu overlay */
   const navToggle = $("#navToggle");
   const navMenu = $("#navMenu");
-  const closeMenu = () => {
+  const closeMenu = (returnFocus = false) => {
     navMenu.classList.remove("open");
     navMenu.hidden = true;
     navToggle.classList.remove("open");
     navToggle.setAttribute("aria-expanded", "false");
     navToggle.setAttribute("aria-label", "打开菜单");
     document.documentElement.classList.remove("menu-open");
+    if (returnFocus) navToggle.focus({ preventScroll: true });
   };
 
   navToggle.addEventListener("click", () => {
@@ -146,8 +147,10 @@
       navToggle.setAttribute("aria-expanded", "true");
       navToggle.setAttribute("aria-label", "关闭菜单");
       document.documentElement.classList.add("menu-open");
+      const firstLink = navMenu.querySelector("a");
+      if (firstLink) firstLink.focus({ preventScroll: true });
     } else {
-      closeMenu();
+      closeMenu(true);
     }
   });
 
@@ -156,7 +159,7 @@
   });
 
   document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape" && !navMenu.hidden) closeMenu();
+    if (e.key === "Escape" && !navMenu.hidden) closeMenu(true);
   });
 
   /* scroll reveal */
@@ -214,7 +217,13 @@
         if (!entry.isIntersecting) return;
         const id = entry.target.id;
         $$("#navLinks a").forEach((a) => {
-          a.classList.toggle("active", a.getAttribute("href") === `#${id}`);
+          const match = a.getAttribute("href") === `#${id}`;
+          a.classList.toggle("active", match);
+          if (match) {
+            a.setAttribute("aria-current", "true");
+          } else {
+            a.removeAttribute("aria-current");
+          }
         });
       });
     },

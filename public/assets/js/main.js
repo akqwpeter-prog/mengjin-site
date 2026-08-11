@@ -249,6 +249,20 @@
     btn.addEventListener("click", (e) => burst(e.clientX, e.clientY));
   });
 
+  /* hero rotor · motion-sites style keyword cycle */
+  const rotor = $("#heroRotor");
+  if (rotor && !reducedMotion) {
+    const rotorWords = ["的产品", "的体验", "的伙伴", "的习惯"];
+    let rotorIndex = 0;
+    setInterval(() => {
+      rotorIndex = (rotorIndex + 1) % rotorWords.length;
+      rotor.classList.remove("rot");
+      rotor.textContent = rotorWords[rotorIndex];
+      void rotor.offsetWidth;
+      rotor.classList.add("rot");
+    }, 2600);
+  }
+
   /* footer year */
   const year = $("#year");
   if (year) year.textContent = String(new Date().getFullYear());

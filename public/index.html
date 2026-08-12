@@ -49,7 +49,7 @@
   <link rel="preload" href="assets/fonts/pjs-variable.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/img/avatar.webp" as="image" fetchpriority="high">
   <link rel="stylesheet" href="tokens.css?v=5">
-  <link rel="stylesheet" href="assets/css/style.css?v=14">
+  <link rel="stylesheet" href="assets/css/style.css?v=16">
 </head>
 <body>
   <div class="aurora" aria-hidden="true"><span></span><span></span><span></span></div>
@@ -90,6 +90,11 @@
 
   <main id="main">
     <section class="hero" id="top">
+      <div class="hero__bg" aria-hidden="true">
+        <video class="hero__video" autoplay muted loop playsinline preload="auto" poster="assets/img/hero-poster.webp">
+          <source src="assets/img/hero-bg.webm" type="video/webm">
+        </video>
+      </div>
       <div class="container hero__grid">
         <div class="hero__copy">
           <div class="hero__identity hero__reveal" style="--d:40ms">
@@ -100,18 +105,13 @@
             </div>
           </div>
           <h1 class="hero__name">曹孟锦</h1>
-          <p class="hero__lede hero__reveal" style="--d:120ms" aria-label="把 AI 做成用户每天愿意打开的产品">把 <span class="hl">AI</span> 做成用户每天愿意打开的 <span class="hero__rotor rot" id="heroRotor" aria-hidden="true">产品</span></p>
+          <p class="hero__lede hero__reveal" style="--d:120ms" aria-label="把 AI 做成用户每天愿意打开的产品">把 <span class="hl">AI</span> 做成用户<span class="hero__nowrap">每天</span>愿意打开的 <span class="hero__rotor rot" id="heroRotor" aria-hidden="true">产品</span></p>
           <p class="hero__sub hero__reveal" style="--d:170ms">AI 陪伴、AI 写作、AI 剧情互动到 AI 游戏，从概念到商业化全程操盘。</p>
           <div class="hero__cta hero__reveal" style="--d:220ms">
             <a class="btn btn--accent btn--magnetic" href="mailto:akqwpeter@me.com">找我聊聊 <span class="btn__arrow" aria-hidden="true">→</span></a>
             <a class="btn btn--outline" href="#projects">看代表作</a>
           </div>
         </div>
-        <figure class="hero__panel hero__reveal" style="--d:280ms" aria-hidden="true">
-          <video class="hero__video" autoplay muted loop playsinline preload="auto" poster="assets/img/hero-poster.webp">
-            <source src="assets/img/hero-bg.webm" type="video/webm">
-          </video>
-        </figure>
       </div>
     </section>
 

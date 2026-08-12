@@ -1549,6 +1549,10 @@ html.menu-open {
     gap: var(--space-xl);
   }
 
+  .hero__media {
+    overflow: hidden;
+  }
+
   .hero__portrait {
     margin-inline-start: 0;
   }

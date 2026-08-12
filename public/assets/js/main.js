@@ -233,7 +233,7 @@
   /* hero rotor · motion-sites style keyword cycle */
   const rotor = $("#heroRotor");
   if (rotor && !reducedMotion) {
-    const rotorWords = ["的产品", "的体验", "的伙伴", "的习惯"];
+    const rotorWords = ["产品", "体验", "伙伴", "习惯"];
     let rotorIndex = 0;
     setInterval(() => {
       rotorIndex = (rotorIndex + 1) % rotorWords.length;

@@ -49,7 +49,7 @@
   <link rel="preload" href="assets/fonts/pjs-variable.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/img/avatar.webp" as="image" fetchpriority="high">
   <link rel="stylesheet" href="tokens.css?v=5">
-  <link rel="stylesheet" href="assets/css/style.css?v=6">
+  <link rel="stylesheet" href="assets/css/style.css?v=7">
 </head>
 <body>
   <div class="aurora" aria-hidden="true"><span></span><span></span><span></span></div>
@@ -91,6 +91,11 @@
 
   <main id="main">
     <section class="hero" id="top">
+      <div class="hero__bg" aria-hidden="true">
+        <video class="hero__video" autoplay muted loop playsinline preload="auto" poster="assets/img/hero-poster.webp">
+          <source src="assets/img/hero-bg.webm" type="video/webm">
+        </video>
+      </div>
       <div class="container hero__grid">
         <div class="hero__copy">
           <p class="hero__label mono-label hero__reveal" style="--d:40ms">AI 产品总监 · 北京</p>

@@ -86,25 +86,6 @@
     });
   }
 
-  /* portrait · 3D tilt on fine pointers */
-  const portrait = $(".hero__portrait");
-  if (portrait && finePointer && !reducedMotion) {
-    let raf = null;
-    portrait.addEventListener("pointermove", (e) => {
-      if (raf) return;
-      raf = requestAnimationFrame(() => {
-        const r = portrait.getBoundingClientRect();
-        const rx = ((e.clientY - r.top) / r.height - 0.5) * -8;
-        const ry = ((e.clientX - r.left) / r.width - 0.5) * 8;
-        portrait.style.transform = `perspective(900px) rotateX(${rx.toFixed(2)}deg) rotateY(${ry.toFixed(2)}deg) translateY(-4px)`;
-        raf = null;
-      });
-    });
-    portrait.addEventListener("pointerleave", () => {
-      portrait.style.transform = "";
-    });
-  }
-
   /* primary CTAs · magnetic pull */
   if (finePointer && !reducedMotion) {
     $$(".btn--magnetic").forEach((btn) => {

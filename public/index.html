@@ -49,7 +49,7 @@
   <link rel="preload" href="assets/fonts/pjs-variable.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/img/avatar.webp" as="image" fetchpriority="high">
   <link rel="stylesheet" href="tokens.css?v=5">
-  <link rel="stylesheet" href="assets/css/style.css?v=13">
+  <link rel="stylesheet" href="assets/css/style.css?v=14">
 </head>
 <body>
   <div class="aurora" aria-hidden="true"><span></span><span></span><span></span></div>
@@ -90,17 +90,7 @@
 
   <main id="main">
     <section class="hero" id="top">
-      <div class="hero__bg" aria-hidden="true">
-        <video class="hero__video" autoplay muted loop playsinline preload="auto" poster="assets/img/hero-poster.webp">
-          <source src="assets/img/hero-bg.webm" type="video/webm">
-        </video>
-      </div>
       <div class="container hero__grid">
-        <ul class="hero__specs" aria-label="从业数据">
-          <li><strong>15 年</strong><span>互联网产品</span></li>
-          <li><strong>3 年</strong><span>AIGC</span></li>
-          <li><strong>6 个</strong><span>AI 应用 0→1</span></li>
-        </ul>
         <div class="hero__copy">
           <div class="hero__identity hero__reveal" style="--d:40ms">
             <img class="hero__avatar" src="assets/img/avatar.webp" alt="曹孟锦的卡通头像" width="104" height="132" fetchpriority="high" decoding="async">
@@ -117,6 +107,11 @@
             <a class="btn btn--outline" href="#projects">看代表作</a>
           </div>
         </div>
+        <figure class="hero__panel hero__reveal" style="--d:280ms" aria-hidden="true">
+          <video class="hero__video" autoplay muted loop playsinline preload="auto" poster="assets/img/hero-poster.webp">
+            <source src="assets/img/hero-bg.webm" type="video/webm">
+          </video>
+        </figure>
       </div>
     </section>
 

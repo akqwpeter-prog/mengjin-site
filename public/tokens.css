@@ -120,8 +120,8 @@
   --color-rule: oklch(90.5% 0.012 230);
   --color-rule-2: oklch(78% 0.02 235);
 
-  --color-muted: oklch(50% 0.02 240);
-  --color-neutral: oklch(38% 0.02 245);
+  --color-muted: oklch(46% 0.02 242);
+  --color-neutral: oklch(41% 0.022 244);
   --color-ink-2: oklch(29% 0.02 250);
   --color-ink: oklch(22% 0.022 255);
 
@@ -140,13 +140,13 @@
   --tint-flare: oklch(62% 0.19 25 / 0.1);
   --tint-ink: oklch(22% 0.022 255 / 0.045);
   --tint-ink-strong: oklch(22% 0.022 255 / 0.09);
-  --tint-rule: oklch(22% 0.022 255 / 0.1);
+  --tint-rule: oklch(22% 0.022 255 / 0.14);
 
   --shadow-card: 0 14px 34px -18px oklch(30% 0.1 255 / 0.2), 0 1px 2px oklch(30% 0.1 255 / 0.06);
   --shadow-card-hover: 0 26px 60px -24px oklch(30% 0.1 255 / 0.28), 0 2px 6px oklch(30% 0.1 255 / 0.1);
   --shadow-btn-cast: oklch(46% 0.18 255 / 0.45);
 
-  --aurora-1: oklch(60% 0.17 240 / 0.4);
-  --aurora-2: oklch(70% 0.12 215 / 0.34);
-  --aurora-3: oklch(66% 0.2 265 / 0.28);
+  --aurora-1: oklch(60% 0.17 240 / 0.48);
+  --aurora-2: oklch(70% 0.12 215 / 0.42);
+  --aurora-3: oklch(66% 0.2 265 / 0.36);
 }

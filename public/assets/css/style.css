@@ -316,7 +316,7 @@ html.site-loading .hero__name .char {
   right: 0;
   z-index: 300;
   padding-block: 0;
-  background: color-mix(in oklch, var(--color-paper) 92%, transparent);
+  background: color-mix(in oklch, var(--color-paper) 96%, transparent);
   border-block-end: 1px solid var(--color-rule);
   border-block-end-color: color-mix(in oklch, var(--color-ink) 30%, transparent);
   -webkit-backdrop-filter: saturate(1.4) blur(14px);
@@ -753,7 +753,7 @@ html.menu-open {
   position: absolute;
   inset: 0;
   z-index: 0;
-  background: url("../img/hero-poster.webp") center / cover no-repeat;
+  background: url("../img/hero-aurora-poster.webp") center / cover no-repeat;
 }
 
 [data-theme="light"] .hero::before {

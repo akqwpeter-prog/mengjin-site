@@ -44,14 +44,22 @@
       } catch (e) {
         document.documentElement.dataset.theme = "dark";
       }
+      document.documentElement.classList.add("site-loading");
     })();
   </script>
+  <noscript><style>.loader{display:none!important}</style></noscript>
   <link rel="preload" href="assets/fonts/pjs-variable.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/img/avatar.webp" as="image" fetchpriority="high">
-  <link rel="stylesheet" href="tokens.css?v=5">
-  <link rel="stylesheet" href="assets/css/style.css?v=19">
+  <link rel="stylesheet" href="tokens.css?v=6">
+  <link rel="stylesheet" href="assets/css/style.css?v=20">
 </head>
 <body>
+  <div class="loader" id="siteLoader" aria-hidden="true">
+    <span class="loader__label mono-label">AI 产品总监 · 作品集</span>
+    <p class="loader__word" id="loaderWord">洞察</p>
+    <span class="loader__count" id="loaderCount">000</span>
+    <span class="loader__bar" aria-hidden="true"><i id="loaderBar"></i></span>
+  </div>
   <div class="aurora" aria-hidden="true"><span></span><span></span><span></span></div>
   <a class="skip-link" href="#main">跳到主要内容</a>
   <div class="nav-sentinel" aria-hidden="true"></div>
@@ -338,10 +346,12 @@
     </section>
 
     <section class="section contact" id="contact">
+      <div class="contact__video" aria-hidden="true">
+        <video class="contact__video-el" muted loop playsinline preload="none" poster="assets/img/hero-poster.webp">
+          <source src="assets/img/hero-bg.webm" type="video/webm">
+        </video>
+      </div>
       <div class="container contact__inner reveal">
-        <div class="contact__art" aria-hidden="true">
-          <img src="assets/img/ink-flow-2.webp" alt="" width="1150" height="720" loading="lazy" decoding="async" fetchpriority="low">
-        </div>
         <h2 class="contact__title">一起做用户每天<br>愿意打开的产品</h2>
         <p class="contact__sub">AI 陪伴、Agent、内容或增长方向的合作与机会，欢迎聊聊。</p>
         <div class="contact__actions">
@@ -353,6 +363,21 @@
     </section>
   </main>
 
+  <div class="footer-marquee" aria-hidden="true">
+    <div class="footer-marquee__track">
+      <div class="footer-marquee__group">
+        <span>把 AI 做成用户每天愿意打开的产品</span><i>✦</i>
+        <span>从安全到 AI 的十五年</span><i>✦</i>
+        <span>AI 陪伴 · Agent · 内容生态</span><i>✦</i>
+      </div>
+      <div class="footer-marquee__group">
+        <span>把 AI 做成用户每天愿意打开的产品</span><i>✦</i>
+        <span>从安全到 AI 的十五年</span><i>✦</i>
+        <span>AI 陪伴 · Agent · 内容生态</span><i>✦</i>
+      </div>
+    </div>
+  </div>
+
   <footer class="site-footer">
     <div class="container footer__inner">
       <span>© <span id="year">2026</span> 曹孟锦</span>
@@ -361,6 +386,6 @@
     </div>
   </footer>
 
-  <script src="assets/js/main.js?v=7" defer></script>
+  <script src="assets/js/main.js?v=8" defer></script>
 </body>
 </html>

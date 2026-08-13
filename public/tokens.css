@@ -26,6 +26,7 @@
   --color-accent-text: oklch(76% 0.12 255);
   --color-accent-ink: oklch(17% 0.015 265);
   --color-focus: oklch(74% 0.13 255);
+  --accent-gradient: linear-gradient(100deg, oklch(76% 0.12 255), oklch(57% 0.16 258));
 
   /* signal · coral (status only, used sparingly) */
   --color-flare: oklch(74% 0.13 25);
@@ -130,6 +131,7 @@
   --color-accent-text: oklch(43% 0.17 258);
   --color-accent-ink: oklch(99% 0.002 220);
   --color-focus: oklch(50% 0.19 255);
+  --accent-gradient: linear-gradient(100deg, oklch(62% 0.17 255), oklch(44% 0.17 258));
 
   --color-flare: oklch(62% 0.19 25);
   --color-flare-deep: oklch(50% 0.18 28);

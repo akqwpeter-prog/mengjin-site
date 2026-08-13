@@ -51,6 +51,88 @@
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const finePointer = window.matchMedia("(pointer: fine)").matches;
 
+  /* cinematic loader · cosmic counter */
+  const loader = $("#siteLoader");
+  const loaderWord = $("#loaderWord");
+  const loaderCount = $("#loaderCount");
+  const loaderBar = $("#loaderBar");
+  const finishLoad = () => {
+    document.documentElement.classList.remove("site-loading");
+    if (loader) {
+      loader.classList.add("done");
+      setTimeout(() => {
+        loader.hidden = true;
+      }, 600);
+    }
+  };
+  if (loader && !reducedMotion) {
+    const words = ["洞察", "创造", "打磨", "增长"];
+    let wi = 0;
+    const wordTimer = setInterval(() => {
+      wi = (wi + 1) % words.length;
+      if (loaderWord) {
+        loaderWord.textContent = words[wi];
+        loaderWord.classList.remove("swap");
+        void loaderWord.offsetWidth;
+        loaderWord.classList.add("swap");
+      }
+    }, 340);
+    const loaderDuration = 1150;
+    const loaderStart = performance.now();
+    const loaderTick = (now) => {
+      const p = Math.min(1, (now - loaderStart) / loaderDuration);
+      const eased = 1 - Math.pow(1 - p, 3);
+      if (loaderCount) {
+        loaderCount.textContent = String(Math.round(eased * 100)).padStart(3, "0");
+      }
+      if (loaderBar) {
+        loaderBar.style.transform = `scaleX(${eased.toFixed(3)})`;
+      }
+      if (p < 1) {
+        requestAnimationFrame(loaderTick);
+      } else {
+        clearInterval(wordTimer);
+        finishLoad();
+      }
+    };
+    requestAnimationFrame(loaderTick);
+  } else {
+    finishLoad();
+  }
+
+  /* contact video · lazy mirrored loop (only when in view + dark theme) */
+  const contactVideoWrap = $(".contact__video");
+  const contactVideoEl = contactVideoWrap ? $(".contact__video-el", contactVideoWrap) : null;
+  if (contactVideoEl && !reducedMotion) {
+    let inView = false;
+    const tryPlay = () => {
+      if (rootEl.dataset.theme !== "light") {
+        contactVideoEl.play().catch(() => {});
+      }
+    };
+    const contactVObserver = new IntersectionObserver(
+      ([entry]) => {
+        inView = entry.isIntersecting;
+        if (inView) {
+          tryPlay();
+        } else {
+          contactVideoEl.pause();
+        }
+      },
+      { threshold: 0.12 }
+    );
+    contactVObserver.observe(contactVideoWrap);
+    if (themeToggle) {
+      themeToggle.addEventListener("click", () => {
+        if (rootEl.dataset.theme === "light") {
+          contactVideoEl.pause();
+        } else if (inView) {
+          tryPlay();
+        }
+      });
+    }
+  }
+
   /* hero title · character entrance */
   const heroName = $(".hero__name");
   if (heroName && !reducedMotion) {
